@@ -1,4 +1,4 @@
-module go-combinators
+module github.com/rag594/go-combinators
 
 go 1.21.3
 
