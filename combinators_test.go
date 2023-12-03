@@ -47,3 +47,12 @@ func TestMapAndFilterCombination(t *testing.T) {
 	assert.Equal(t, true, slices.Equal[Slice[string]](d, expectedOutput))
 
 }
+
+func TestReduce(t *testing.T) {
+	intSlice := Slice[int]{1, 2, 3, 4, 5, 6}
+	d := intSlice.Reduce(nil, func(i1, i2 int) int {
+		return i1 + i2
+	})
+	expectedOutput := 21
+	assert.Equal(t, expectedOutput, d)
+}

@@ -9,15 +9,13 @@ type Slice[T any] []T
 // provided.
 // For example:
 //
-// intSlice := Slice[int]{1, 2, 3, 4, 5, 6}
-//
-//	evenPredicateFunc := func(n int) bool {
-//		return n%2 == 0
-//	}
-//
-// opEvenSlice := Slice[int]{2, 4, 6}
-// evenSlice := intSlice.Filter(evenPredicateFunc)
-// Output: Slice[int]{2, 4, 6}
+//	    intSlice := Slice[int]{1, 2, 3, 4, 5, 6}
+//		   evenPredicateFunc := func(n int) bool {
+//				return n%2 == 0
+//			}
+//	    opEvenSlice := Slice[int]{2, 4, 6}
+//		   evenSlice := intSlice.Filter(evenPredicateFunc)
+//		   Output: Slice[int]{2, 4, 6}
 func (s Slice[T]) Filter(filterFunc func(T) bool) Slice[T] {
 	result := Slice[T]{}
 
@@ -31,6 +29,17 @@ func (s Slice[T]) Filter(filterFunc func(T) bool) Slice[T] {
 	return result
 }
 
+// Map transforms a Slice container by applying a
+// function to each element of that container
+// For example:
+//
+//		 intSlice := Slice[int]{1, 2, 3, 4, 5, 6}
+//		 mapperFunc := func(n int) int {
+//			 return n * 2
+//		 }
+//
+//		  mappedSlice := intSlice.Map(mapperFunc)
+//	   Output:Slice[int]{2, 4, 6, 8, 10, 12}
 func (s Slice[T]) Map(mapFunc func(T) T) Slice[T] {
 	result := Slice[T]{}
 
@@ -41,6 +50,18 @@ func (s Slice[T]) Map(mapFunc func(T) T) Slice[T] {
 	return result
 }
 
+// Reduce method is a higher-order function that
+// takes all the elements in a Slice Container
+// and combines them using a binary operation to produce a single value.
+// It is necessary to make sure that operations are commutative and associative
+// For example:
+//
+//	 intSlice := Slice[int]{1, 2, 3, 4, 5, 6}
+//
+//		d := intSlice.Reduce(nil, func(i1, i2 int) int {
+//			return i1 + i2
+//		})
+//		Output: 21
 func (s Slice[T]) Reduce(startVal *T, callbackFunc func(T, T) T) T {
 	var accumulator T
 	start := 0
